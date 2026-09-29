@@ -1,3 +1,4 @@
+package model;
 public class RigaScontrino {
     private Prodotto product;
     private int quantity;

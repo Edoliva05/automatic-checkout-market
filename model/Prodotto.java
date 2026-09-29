@@ -1,3 +1,4 @@
+package model;
 public class Prodotto {
     private String barCode;
     private String productName;
