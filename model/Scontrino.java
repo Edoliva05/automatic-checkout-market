@@ -39,4 +39,13 @@ public class Scontrino {
         }
         return false;
     }
+
+    //takes a row and call the increaseQuantity method
+    public void increaseRowQuantity(Prodotto product){
+        for(RigaScontrino row : rows){
+            if(row.getProduct() == product){
+                row.increaseQuantity();
+            }
+        }
+    }
 }
