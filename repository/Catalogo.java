@@ -9,6 +9,7 @@ public class Catalogo {
 
     public Catalogo(){
         this.productDB = new HashMap<>();
+        populateDB();
     }
 
     //this method populates the DB (hashmap because for now it's a mock) with a set of tests products
