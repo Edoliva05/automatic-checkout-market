@@ -37,6 +37,8 @@ public class CassaService {
                 currentCart.addRow(receiptRow);
             }
 
+        }else{
+            throw new IllegalArgumentException("Barcode not found: " + barcode);
         }
     }
 
