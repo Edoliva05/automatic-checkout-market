@@ -1,4 +1,4 @@
-package model;
+package com.oliva.pos.model;
 public class Prodotto {
     private String barCode;
     private String productName;

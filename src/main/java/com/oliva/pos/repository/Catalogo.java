@@ -1,9 +1,13 @@
-package repository;
+package com.oliva.pos.repository;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.Prodotto;
 
+import org.springframework.stereotype.Repository;
+
+import com.oliva.pos.model.Prodotto;
+
+@Repository
 public class Catalogo {
     
     Map<String, Prodotto> productDB;

@@ -1,4 +1,4 @@
-package model;
+package com.oliva.pos.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

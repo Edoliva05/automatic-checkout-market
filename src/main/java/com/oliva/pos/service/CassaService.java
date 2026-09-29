@@ -1,11 +1,15 @@
-package service;
+package com.oliva.pos.service;
 
-import model.Prodotto;
-import model.RigaScontrino;
-import model.Scontrino;
-import repository.Catalogo;
+import org.springframework.stereotype.Service;
+
+import com.oliva.pos.model.Prodotto;
+import com.oliva.pos.model.RigaScontrino;
+import com.oliva.pos.model.Scontrino;
+import com.oliva.pos.repository.Catalogo;
+
 
 //class Service, stands between class Scontrino and Catalogo
+@Service
 public class CassaService {
 
     Scontrino currentCart;
