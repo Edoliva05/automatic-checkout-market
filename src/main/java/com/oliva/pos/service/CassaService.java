@@ -48,10 +48,11 @@ public class CassaService {
 
     //method that calls the function to compute the carts's total and close the current cart
     public double payAndCloseCart(){
+        if (this.currentCart == null) {
+            throw new IllegalStateException("Error! There's no cart open");
+        }
         double total = currentCart.computeTotal();
         currentCart = null;
         return total;
     }
-
-
 }
