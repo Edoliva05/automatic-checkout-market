@@ -16,7 +16,7 @@ public class CassaService {
     }
 
     //starts the new cart 
-    public void startNewChart(){
+    public void startNewCart(){
         this.currentCart = new Scontrino();
     }
 
@@ -42,7 +42,7 @@ public class CassaService {
         }
     }
 
-    //method that calls the function to compute the charts's total and close the current chart
+    //method that calls the function to compute the carts's total and close the current cart
     public double payAndCloseCart(){
         double total = currentCart.computeTotal();
         currentCart = null;
