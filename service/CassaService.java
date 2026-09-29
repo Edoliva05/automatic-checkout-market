@@ -36,8 +36,15 @@ public class CassaService {
                 RigaScontrino receiptRow = new RigaScontrino(currentProduct, 1, price);
                 currentChart.addRow(receiptRow);
             }
-            
+
         }
+    }
+
+    //method that calls the function to compute the charts's total and close the current chart
+    public double payAndCloseChart(){
+        double total = currentChart.computeTotal();
+        currentChart = null;
+        return total;
     }
 
 
