@@ -1,11 +1,12 @@
 package repository;
 
 import java.util.HashMap;
+import java.util.Map;
 import model.Prodotto;
 
 public class Catalogo {
     
-    HashMap<String, Prodotto> productDB;
+    Map<String, Prodotto> productDB;
 
     public Catalogo(){
         this.productDB = new HashMap<>();
