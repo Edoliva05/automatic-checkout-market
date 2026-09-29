@@ -34,6 +34,10 @@ public class CassaService {
 
             double price = currentProduct.getPrice();
 
+            if (this.currentCart == null) {
+                throw new IllegalStateException("Error! There's no cart open");
+            }
+
             if(currentCart.isAlreadyInCart(currentProduct)){
                 currentCart.increaseRowQuantity(currentProduct);
             }else{
