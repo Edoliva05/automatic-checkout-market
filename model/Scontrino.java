@@ -28,4 +28,15 @@ public class Scontrino {
 
         return total;
     }
+
+    //method called by CassaService to verify if a product is already in the chart
+    //returns a boolen
+    public boolean isAlreadyInChart(Prodotto product){
+        for(RigaScontrino row : rows){
+            if(row.getProduct() == product){
+                return true;
+            }
+        }
+        return false;
+    }
 }
