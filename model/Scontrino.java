@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scontrino {
-    private List<RigaScontrino> rows = new ArrayList<>();
+    private List<RigaScontrino> rows;
     private LocalDateTime date;
 
     public Scontrino(){
-        
+        rows = new ArrayList<>();
+        this.date = LocalDateTime.now();
     }
     
     public void addRow(RigaScontrino row){
