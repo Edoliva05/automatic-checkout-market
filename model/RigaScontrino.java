@@ -4,6 +4,12 @@ public class RigaScontrino {
     private int quantity;
     private double productPrice;
 
+    public RigaScontrino(Prodotto product, int quantity, double productPrice){
+        this.product = product;
+        this.quantity = quantity;
+        this.productPrice = productPrice;
+    }
+
     public Prodotto getProduct(){
         return this.product;
     }
