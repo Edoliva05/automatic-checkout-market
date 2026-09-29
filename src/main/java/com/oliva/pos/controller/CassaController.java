@@ -37,9 +37,14 @@ public class CassaController {
     //when received POST request calls payAndCloseCart method
     @PostMapping("/cassa-automatica/checkout")
     public String checkoutCart(){
-        double total = cassaService.payAndCloseCart();
-        String fomattedTotal = String.format("%.2f", total);  //2 decimal
-        return "Success: Cart closed. Total to pay: " + total;
+
+        try {
+            double total = cassaService.payAndCloseCart();
+            String fomattedTotal = String.format("%.2f", total);  //2 decimal
+            return "Success: Cart closed. Total to pay: " + fomattedTotal;
+        } catch (IllegalStateException e) {
+            return "Error: " + e.getMessage();
+        }
     }
 
 }
