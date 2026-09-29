@@ -33,7 +33,7 @@ public class Scontrino {
     //returns a boolen
     public boolean isAlreadyInCart(Prodotto product){
         for(RigaScontrino row : rows){
-            if(row.getProduct() == product){
+            if(row.getProduct().getBarCode().equals(product.getBarCode())){
                 return true;
             }
         }
@@ -43,7 +43,7 @@ public class Scontrino {
     //takes a row and call the increaseQuantity method
     public void increaseRowQuantity(Prodotto product){
         for(RigaScontrino row : rows){
-            if(row.getProduct() == product){
+            if(row.getProduct().getBarCode().equals(product.getBarCode())){
                 row.increaseQuantity();
             }
         }
