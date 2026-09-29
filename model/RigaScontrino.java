@@ -21,4 +21,8 @@ public class RigaScontrino {
     public int getQuantity(){
         return this.quantity;
     }
+
+    public void increaseQuantity(){
+        this.quantity += 1;
+    }
 }
