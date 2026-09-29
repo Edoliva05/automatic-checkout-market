@@ -5,7 +5,7 @@ import model.RigaScontrino;
 import model.Scontrino;
 import repository.Catalogo;
 
-//class Controller, stands between class Scontrino and Catalogo
+//class Service, stands between class Scontrino and Catalogo
 public class CassaService {
 
     Scontrino currentCart;
