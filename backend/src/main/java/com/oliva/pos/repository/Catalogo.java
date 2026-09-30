@@ -25,6 +25,7 @@ public class Catalogo {
         productDB.put("800789", new Prodotto("Acqua Naturale 1.5L", "800789", 0.40));
         productDB.put("800000", new Prodotto("Sacca Shopper", "800000", 0.10));
         productDB.put("9771122330009", new Prodotto("Iphone 14", "9771122330009", 599));
+        productDB.put("8017759647990", new Prodotto("Riso Fiora", "8017759647990", 2.99));
     }
 
     public Prodotto findProductByCode(String bar_code){
