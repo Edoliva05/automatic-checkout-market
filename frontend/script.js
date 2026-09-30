@@ -46,7 +46,9 @@ function onScanSuccess(decodedText){
     axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
         (response) => {
             console.log("Product added:", response.data);
-            scanner.resume();
+            setTimeout(() => {
+                scanner.resume();
+            }, 2000);
         },
         (error) => {
             console.log("Scan error:", error);
