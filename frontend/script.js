@@ -36,3 +36,26 @@ document.getElementById('btn-send-scan').addEventListener('click', e => {
         }
     );
 });
+
+//--Elements to scan the barcode--
+
+function onScanSuccess(decodedText){
+    console.log(`Decoded from webcam = ${decodedText}`);
+
+    scanner.pause();
+    axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
+        (response) => {
+            console.log("Product added:", response.data);
+            scanner.resume();
+        },
+        (error) => {
+            console.log("Scan error:", error);
+            scanner.resume();
+        }
+    );
+
+}
+
+let scanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 }, false);
+
+scanner.render(onScanSuccess);
