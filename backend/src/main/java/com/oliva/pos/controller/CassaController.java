@@ -33,7 +33,7 @@ public class CassaController {
             return "Error: " + e.getMessage();
         }catch (IllegalStateException e) {
             return "Error: " + e.getMessage();
-        }
+            }
     }
 
     //when received POST request calls payAndCloseCart method

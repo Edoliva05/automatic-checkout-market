@@ -8,18 +8,38 @@
 </head>
 <body>
 
-    <div id="reader"></div>
-    <div id="monitor"></div>
-    <div id="cart"></div>
-    
-    
-    <button id="btn-new-cart">Start new cart</button>
+    <div id="main-container">
+        
+        <div id="header">
+            <h1>Automatic Checkout</h1>
+        </div>
 
-    <label for="input-barcode">BarCode</label>
-    <input id="input-barcode" type="text" placeholder="Es. 800456" />
-    <button id="btn-send-scan">Scan</button>
+        <div id="reader">
 
-    <button id="btn-checkout">Checkout</button>
+        </div>
+
+        <div id="monitor">
+            <button id="btn-new-cart">Start new cart</button>
+
+            <div class="manual-entry">
+                <label for="input-barcode">Manual insert:</label>
+                <input id="input-barcode" type="text" placeholder="Es. 800456" />
+                <button id="btn-send-scan">Scan</button>
+            </div>
+
+            <button id="btn-checkout">Checkout</button>
+        </div>
+
+        <div id="cart">
+            <h2>Receipt</h2>
+            <ul id="cart-items">
+                <!-- Scanned products -->
+            </ul>
+            <div id="cart-total">Total to Pay: €0.0</div>
+        </div>
+
+    </div>
+
 
     <script src="lib/scanner.js"></script>
     <script src="lib/axios.js"></script>

@@ -45,6 +45,6 @@ function onScanSuccess(decodedText){
 
 }
 
-let scanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 }, false);
+let scanner = new Html5QrcodeScanner("reader", { width: 350, height: 150 }, false);
 
 scanner.render(onScanSuccess);
