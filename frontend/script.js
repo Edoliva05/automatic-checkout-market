@@ -52,7 +52,9 @@ function onScanSuccess(decodedText){
         },
         (error) => {
             console.log("Scan error:", error);
-            scanner.resume();
+            setTimeout(() => {
+                scanner.resume();
+            }, 2000);
         }
     );
 
