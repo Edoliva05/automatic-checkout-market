@@ -31,6 +31,8 @@ public class CassaController {
             return "Success: Product " + barcode + " scanned";
         }catch (IllegalArgumentException e) {
             return "Error: " + e.getMessage();
+        }catch (IllegalStateException e) {
+            return "Error: " + e.getMessage();
         }
     }
 
