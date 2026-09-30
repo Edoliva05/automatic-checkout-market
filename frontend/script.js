@@ -22,21 +22,6 @@ document.getElementById('btn-checkout').addEventListener('click', e => {
     );
 });
 
-document.getElementById('btn-send-scan').addEventListener('click', e => {
-
-    const barcode = document.getElementById('input-barcode').value;
-    
-    axios.post(`http://localhost:8080/cassa-automatica/scan/${barcode}`).then(
-        (response) => {
-            var result = response.data;
-            console.log(result);
-        },
-        (error) => {
-            console.log(error);
-        }
-    );
-});
-
 //--Elements to scan the barcode--
 
 function onScanSuccess(decodedText){
