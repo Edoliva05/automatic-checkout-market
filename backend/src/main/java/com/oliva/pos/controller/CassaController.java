@@ -1,10 +1,12 @@
 package com.oliva.pos.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oliva.pos.model.Scontrino;
 import com.oliva.pos.service.CassaService;
 
 @RestController
@@ -25,15 +27,14 @@ public class CassaController {
     //when received a POST request extract the barcode with annotation @PathVariable and 
     //scans the product
     @PostMapping("/cassa-automatica/scan/{barcode}")
-    public String scanProduct(@PathVariable String barcode){
+    public ResponseEntity<?> scanProduct(@PathVariable String barcode){
         try {
             cassaService.scan(barcode);
-            return "Success: Product " + barcode + " scanned";
+            Scontrino updatedCart = cassaService.getCart();
+            return ResponseEntity.ok(updatedCart);  //responding with the complete object
         }catch (IllegalArgumentException e) {
-            return "Error: " + e.getMessage();
-        }catch (IllegalStateException e) {
-            return "Error: " + e.getMessage();
-            }
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     //when received POST request calls payAndCloseCart method
