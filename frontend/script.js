@@ -4,7 +4,7 @@ document.getElementById('btn-new-cart').addEventListener('click', e => {
         (response) => {
             var result = response.data;
             console.log(result);
-            //refresh the actual cart and total
+            //emptying actual cart and total
             const cartItemsList = document.getElementById("cart-items");
             const cartTotal = document.getElementById("cart-total");
 
