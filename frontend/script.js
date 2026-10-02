@@ -22,6 +22,43 @@ document.getElementById('btn-checkout').addEventListener('click', e => {
     );
 });
 
+//Function that takes the JSON data from backend and display it to the user
+function updateCartUI(cartData){
+    const cartItemsList = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+
+    cartItemsList.innerHTML = '';
+
+    if(!cartData.rows || cartData.rows == 0) return;
+
+    let total = 0;
+
+    cartData.rows.forEach(row => {
+        console.log(row.product.productName);
+        console.log(row.product.price);
+        console.log(row.quantity);
+
+        //fetching all components from the JSON object
+        const productName = row.product.productName;
+        const productPrice = row.product.price;
+        const productQuantity = row.quantity;
+
+        const li = document.createElement('li');
+
+        //adding styling and text to the <li>
+        li.style.padding = "5px 0";
+        li.style.borderBottom = "1px solid #eee";
+        li.textContent = `${productQuantity}x ${productName}:   €${(productPrice * productQuantity).toFixed(2)}`;
+
+        cartItemsList.appendChild(li);
+
+        total += (productPrice * productQuantity);
+    });
+
+    cartTotal.textContent = `Total to Pay: €${total.toFixed(2)}`;
+
+}
+
 //--Elements to scan the barcode--
 
 //audio scanning barcode
@@ -37,6 +74,8 @@ function onScanSuccess(decodedText){
     axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
         (response) => {
             console.log("Product added: ",response.data);
+
+            updateCartUI(response.data);
             
             setTimeout(() => {
                 scanner.resume();
