@@ -4,6 +4,13 @@ document.getElementById('btn-new-cart').addEventListener('click', e => {
         (response) => {
             var result = response.data;
             console.log(result);
+            //refresh the actual cart and total
+            const cartItemsList = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+
+            cartItemsList.innerHTML = '';
+            cartTotal.innerHTML = 'Total to Pay: €0.0';
+
         },
         (error) => {
             console.log(error);
@@ -81,7 +88,7 @@ function onScanSuccess(decodedText){
             
             setTimeout(() => {
                 scanner.resume();
-            }, 2000);
+            }, 1000);
         },
         (error) => {
             console.log("Scan error:", error);
