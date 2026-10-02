@@ -24,14 +24,20 @@ document.getElementById('btn-checkout').addEventListener('click', e => {
 
 //--Elements to scan the barcode--
 
+//audio scanning barcode
+const sound = new Audio("./audio/scan_audio.mp3");
+
+
 function onScanSuccess(decodedText){
     console.log(`Decoded from webcam = ${decodedText}`);
+
+    sound.play();  //playing scanning sound
 
     scanner.pause();
     axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
         (response) => {
-            console.log("Product added:", response.data);
-            console.log(response.data)
+            console.log("Product added: ",response.data);
+            
             setTimeout(() => {
                 scanner.resume();
             }, 2000);
