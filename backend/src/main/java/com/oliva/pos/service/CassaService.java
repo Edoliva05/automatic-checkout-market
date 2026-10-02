@@ -24,6 +24,10 @@ public class CassaService {
         this.currentCart = new Scontrino();
     }
 
+    public Scontrino getCart(){
+        return this.currentCart;
+    }
+
     //method that given the barcode interrogate the DB if exists, create a new row and pass it to the cart
     //if the product is currently in the cart, increase the quantity of it
     //if not exists: return an exception
