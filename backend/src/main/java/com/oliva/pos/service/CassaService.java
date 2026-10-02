@@ -25,7 +25,7 @@ public class CassaService {
     }
 
     //method that given the barcode interrogate the DB if exists, create a new row and pass it to the cart
-    //if the product is currencly in the cart, increase the quantity of it
+    //if the product is currently in the cart, increase the quantity of it
     //if not exists: return an exception
     public void scan(String barcode){
         Prodotto currentProduct = catalog.findProductByCode(barcode);
