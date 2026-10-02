@@ -16,6 +16,14 @@ public class Scontrino {
         this.rows.add(row);
     }
 
+    public List<RigaScontrino> getRows(){
+        return this.rows;
+    }
+
+    public LocalDateTime getDate(){
+        return this.date;
+    }
+
     //function that compute the total of the receipt looping throgh the list of lines
     //and multiplying that for the quantity of the product
     public double computeTotal(){
