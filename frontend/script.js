@@ -1,3 +1,4 @@
+//New cart button
 document.getElementById('btn-new-cart').addEventListener('click', e => {
     axios.post("http://localhost:8080/cassa-automatica/newCart").then(
         (response) => {
@@ -10,6 +11,7 @@ document.getElementById('btn-new-cart').addEventListener('click', e => {
     );
 });
 
+//Checkout button
 document.getElementById('btn-checkout').addEventListener('click', e => {
     axios.post("http://localhost:8080/cassa-automatica/checkout").then(
         (response) => {
@@ -90,6 +92,12 @@ function onScanSuccess(decodedText){
     );
 
 }
+
+//Manual insert button
+document.getElementById('btn-send-scan').addEventListener('click', e => {
+    const barcodeManual = document.getElementById('input-barcode').value;
+    onScanSuccess(barcodeManual);
+});
 
 let scanner = new Html5QrcodeScanner("reader", { width: 350, height: 150 }, false);
 
