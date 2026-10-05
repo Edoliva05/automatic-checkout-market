@@ -111,6 +111,7 @@ document.getElementById('btn-send-scan').addEventListener('click', e => {
     }
 });
 
+//Sertting and rendering the actual scanner
 let scanner = new Html5QrcodeScanner("reader", { 
     fps: 30,
     qrbox: { width: 350, height: 150 } 
