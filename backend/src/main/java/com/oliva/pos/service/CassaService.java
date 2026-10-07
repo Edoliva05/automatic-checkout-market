@@ -32,15 +32,16 @@ public class CassaService {
     //if the product is currently in the cart, increase the quantity of it
     //if not exists: return an exception
     public void scan(String barcode){
+
+        if (this.currentCart == null) {
+            throw new IllegalStateException("Error! There's no cart open");
+        }
+
         Prodotto currentProduct = catalog.findProductByCode(barcode);
 
         if(currentProduct != null){
 
             double price = currentProduct.getPrice();
-
-            if (this.currentCart == null) {
-                throw new IllegalStateException("Error! There's no cart open");
-            }
 
             if(currentCart.isAlreadyInCart(currentProduct)){
                 currentCart.increaseRowQuantity(currentProduct);

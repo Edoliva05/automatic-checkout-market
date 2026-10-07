@@ -32,7 +32,7 @@ public class CassaController {
             cassaService.scan(barcode);
             Scontrino updatedCart = cassaService.getCart();
             return ResponseEntity.ok(updatedCart);  //responding with the complete object
-        }catch (IllegalArgumentException e) {
+        }catch (IllegalArgumentException | IllegalStateException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
