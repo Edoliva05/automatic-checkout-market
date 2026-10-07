@@ -78,6 +78,8 @@ function showToast(message){
     
     error_div_text.innerHTML = message;
 
+    soundError.play(); //playing error sound
+
     error_div.classList.add('show');
     setTimeout(() => {
         error_div.classList.remove('show');
@@ -88,14 +90,19 @@ function showToast(message){
 //--Elements to scan the barcode--
 
 //audio scanning barcode
-const sound = new Audio("./audio/scan_audio.mp3");
+const soundScan = new Audio("./audio/scan_audio.mp3");
+
+//audio when an error occur
+const soundError = new Audio("./audio/error.mp3");
 
 
-function onScanSuccess(decodedText){
+function onScanSuccess(decodedText, manual){
     console.log(`Decoded from webcam = ${decodedText}`);
 
-    sound.play();  //playing scanning sound
-
+    if(manual !== true){
+        soundScan.play();  //playing scanning sound
+    }
+    
     scanner.pause();
     axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
         (response) => {
@@ -123,7 +130,7 @@ document.getElementById('btn-send-scan').addEventListener('click', e => {
     const barcodeManual = document.getElementById('input-barcode');
     const manualValue = barcodeManual.value;
     if (manualValue.trim() !== "") {
-        onScanSuccess(manualValue);
+        onScanSuccess(manualValue, true);
         barcodeManual.value = ''; //emptying the field
     }
 });
@@ -134,4 +141,4 @@ let scanner = new Html5QrcodeScanner("reader", {
     qrbox: { width: 350, height: 150 } 
 }, false);
 
-scanner.render(onScanSuccess);
+scanner.render(onScanSuccess, false);
