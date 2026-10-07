@@ -14,6 +14,7 @@ document.getElementById('btn-new-cart').addEventListener('click', e => {
         },
         (error) => {
             console.log(error);
+            showToast(error.response.data);
         }
     );
 });
@@ -28,6 +29,7 @@ document.getElementById('btn-checkout').addEventListener('click', e => {
         },
         (error) => {
             console.log(error);
+            showToast(error.response.data);
         }
     );
 });
@@ -69,6 +71,20 @@ function updateCartUI(cartData){
 
 }
 
+//Elper function to show/hide the error message
+function showToast(message){
+    const error_div = document.getElementById("error-div");
+    const error_div_text = document.querySelector('#error-p');
+    
+    error_div_text.innerHTML = message;
+
+    error_div.classList.add('show');
+    setTimeout(() => {
+        error_div.classList.remove('show');
+    }, 3000);
+
+}
+
 //--Elements to scan the barcode--
 
 //audio scanning barcode
@@ -93,6 +109,7 @@ function onScanSuccess(decodedText){
         },
         (error) => {
             console.log("Scan error:", error);
+            showToast(error.response.data);
             setTimeout(() => {
                 scanner.resume();
             }, 2000);
