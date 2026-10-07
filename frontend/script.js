@@ -89,6 +89,8 @@ function showToast(message){
 
 //--Elements to scan the barcode--
 
+let isProcessingScan = false;
+
 //audio scanning barcode
 const soundScan = new Audio("./audio/scan_audio.mp3");
 
@@ -97,6 +99,10 @@ const soundError = new Audio("./audio/error.mp3");
 
 
 function onScanSuccess(decodedText, manual){
+
+    if(isProcessingScan) return;
+    isProcessingScan = true;
+
     console.log(`Decoded from webcam = ${decodedText}`);
 
     if(manual !== true){
@@ -111,6 +117,7 @@ function onScanSuccess(decodedText, manual){
             updateCartUI(response.data);
             
             setTimeout(() => {
+                isProcessingScan = false;
                 scanner.resume();
             }, 1000);
         },
@@ -118,6 +125,7 @@ function onScanSuccess(decodedText, manual){
             console.log("Scan error:", error);
             showToast(error.response.data);
             setTimeout(() => {
+                isProcessingScan = false;
                 scanner.resume();
             }, 2000);
         }
