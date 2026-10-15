@@ -89,37 +89,39 @@ function showToast(message){
 
 //--Elements to scan the barcode--
 
+let lastScanTime = 0;
+
 //audio scanning barcode
 const soundScan = new Audio("./audio/scan_audio.mp3");
 
 //audio when an error occur
 const soundError = new Audio("./audio/error.mp3");
 
-
 function onScanSuccess(decodedText, manual){
+
+    const currentTime = Date.now();
+
+    if (currentTime - lastScanTime < 3000) {
+        return; 
+    }
+
+    lastScanTime = currentTime;
+
     console.log(`Decoded from webcam = ${decodedText}`);
 
     if(manual !== true){
+        soundScan.currentTime = 0;
         soundScan.play();  //playing scanning sound
     }
     
-    scanner.pause();
     axios.post(`http://localhost:8080/cassa-automatica/scan/${decodedText}`).then(
         (response) => {
             console.log("Product added: ",response.data);
-
             updateCartUI(response.data);
-            
-            setTimeout(() => {
-                scanner.resume();
-            }, 1000);
         },
         (error) => {
             console.log("Scan error:", error);
             showToast(error.response.data);
-            setTimeout(() => {
-                scanner.resume();
-            }, 2000);
         }
     );
 
