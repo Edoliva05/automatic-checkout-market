@@ -1,4 +1,4 @@
-/*package com.oliva.pos.repository;
+package com.oliva.pos.repository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,4 +32,3 @@ public class Catalogo {
         return productDB.get(bar_code);
     }
 }
-*/
