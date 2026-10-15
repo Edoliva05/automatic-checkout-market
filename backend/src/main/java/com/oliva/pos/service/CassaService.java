@@ -5,18 +5,18 @@ import org.springframework.stereotype.Service;
 import com.oliva.pos.model.Prodotto;
 import com.oliva.pos.model.RigaScontrino;
 import com.oliva.pos.model.Scontrino;
-import com.oliva.pos.repository.Catalogo;
+import com.oliva.pos.repository.ProdottoRepository;
 
 
 //class Service, stands between class Scontrino and Catalogo
 @Service
 public class CassaService {
 
-    Scontrino currentCart;
-    Catalogo catalog;
+    private Scontrino currentCart;
+    private ProdottoRepository prodottoRepository;
 
-    public CassaService(Catalogo catalog){ //Dependency injection of the DB
-        this.catalog = catalog;
+    public CassaService(ProdottoRepository prodottoRepository){ //Dependency injection of the DB
+        this.prodottoRepository = prodottoRepository;
     }
 
     //starts the new cart 
@@ -37,7 +37,7 @@ public class CassaService {
             throw new IllegalStateException("Error! There's no cart open");
         }
 
-        Prodotto currentProduct = catalog.findProductByCode(barcode);
+        Prodotto currentProduct = prodottoRepository.findById(barcode).orElse(null);
 
         if(currentProduct != null){
 
