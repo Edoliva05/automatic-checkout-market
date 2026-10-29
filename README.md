@@ -43,6 +43,12 @@ CassaService
 ProdottoRepository --> PostgreSQL
 ```
 
+### Modello di dominio
+
+Lo scontrino raccoglie una o più righe; ogni riga fa riferimento a un prodotto del catalogo.
+
+![Diagramma del modello di dominio](backend/Dominio.png)
+
 Le responsabilità principali sono:
 
 - `CassaController`: espone gli endpoint HTTP della cassa.
